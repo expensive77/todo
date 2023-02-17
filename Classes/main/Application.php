@@ -31,6 +31,6 @@ class Application
 
     public function run()
     {
-        echo $this->Route->resolve();
+        print_r($this->Route->resolve()); 
     }
 }

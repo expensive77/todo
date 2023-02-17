@@ -5,34 +5,36 @@ use Classes\Main\Response;
 use Classes\main\View;
 class Route
 {
-    protected static $routes=[];
+    protected $routes=[];
     protected Request $request;
     protected Response $response;
+    protected View $view;
 
     public function __construct(Request $request,Response $response)
     {
         $this->request=$request;
         $this->response=$response;
+        $this->view = new View;
     }
 
-    public static function get($path, array $callback)
+    public  function get($path, array $callback)
     {
-        self::$routes['get'][$path] = $callback;
+        $this->routes['get'][$path] = $callback;
     }
 
-    public static function post($path, array $callback)
+    public  function post($path, array $callback)
     {
-        self::$routes['post'][$path] = $callback;
+        $this->routes['post'][$path] = $callback;
     }
 
-    public static function put($path, array $callback)
+    public  function put($path, array $callback)
     {
-        self::$routes['put'][$path] = $callback;
+        $this->routes['put'][$path] = $callback;
     }
 
-    public static function delete($path, array $callback)
+    public  function delete($path, array $callback)
     {
-        self::$routes['delete'][$path] = $callback;
+        $this->routes['delete'][$path] = $callback;
     }
 
     public function resolve()
@@ -47,10 +49,11 @@ class Route
             return (new View)->renderView("_404");
         }
 
-        // View
-
-
-        // function or method
+        if (is_array($callback)) {
+            $obj = new $callback[0];
+            $func = $callback[1];
+            return $obj->$func($this->request);
+        }
 
     }
 

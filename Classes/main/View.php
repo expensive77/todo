@@ -6,25 +6,31 @@ class View
 {
     public function renderView($view, array $params = [])
     {
+        
+
         $layout = $this->renderLayout();
         $content = $this->renderContent($view, $params);
-        return str_replace("{{content}}", $content, $layout);
+        $resulte = str_replace("{{content}}", $content, $layout);
+
+        return $resulte;
+        
+
     }
 
     public function renderContent($view, $params)
     {
+        ob_start();
         foreach ($params as $key => $value) {
             $$key = $value;
         }
-        ob_start();
-        include_once Application::$ROOT . "/view/$view.php";
+        include_once Application::$ROOT . "/Classes/view/$view.php";
         return ob_get_clean();
     }
 
     public function renderLayout()
     {
         ob_start();
-        include_once Application::$ROOT . "/view/layout/main.php";
+        include_once Application::$ROOT . "/Classes/view/layout/main.php";
         return ob_get_clean();
     }
 }

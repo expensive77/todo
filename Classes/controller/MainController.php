@@ -6,7 +6,7 @@ use Classes\Main\Request;
 use Classes\main\View;
 use Classes\model\Todo;
 
-class SiteController
+class MainController
 {
     public Todo $todo;
 
@@ -18,7 +18,7 @@ class SiteController
     public function home(Request $request)
     {
         $id = $request->getBody()['id'] ?? null;
-        return (new View)->renderView("home", ["todo" => $this->todo->getTodo($id)]);
+        return (new View)->renderView("home", ["todo" =>$this->todo->getTodo($id)]);
     }
 
     public function addTodo(Request $request)

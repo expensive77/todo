@@ -7,7 +7,7 @@ class Todo
 {
     public $servername = "localhost";
     public $username = "root";
-    public $password = "12345";
+    public $password = "";
     public PDO $conn;
     public function __construct()
     {
