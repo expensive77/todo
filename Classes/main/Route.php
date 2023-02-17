@@ -52,6 +52,7 @@ class Route
         if (is_array($callback)) {
             $obj = new $callback[0];
             $func = $callback[1];
+            
             return $obj->$func($this->request);
         }
 

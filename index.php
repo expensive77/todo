@@ -2,15 +2,19 @@
 require __DIR__."/vendor/autoload.php";
 
 use Classes\controller\MainController;
+use Classes\controller\AuthController;
 use Classes\main\Application;
-use Classes\Main\Request;
 $app = new Application(__DIR__);
+
 
 $app->get("/", [MainController::class, "home"]);
 $app->post("/", [MainController::class, "toggleTodo"]);
 $app->get("/todo", [MainController::class, "addForm"]);
 $app->post("/todo", [MainController::class, "addTodo"]);
 $app->post("/delete", [MainController::class, "deleteTodo"]);
+$app->get("/login", [AuthController::class, "login"]);
+$app->post("/login", [AuthController::class, "login"]);
+
 
 
 

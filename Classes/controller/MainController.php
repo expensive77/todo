@@ -15,6 +15,7 @@ class MainController
         $this->todo = new Todo;
     }
 
+    
     public function home(Request $request)
     {
         $id = $request->getBody()['id'] ?? null;
