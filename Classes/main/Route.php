@@ -5,7 +5,7 @@ use Classes\Main\Response;
 use Classes\main\View;
 class Route
 {
-    protected static $routes=[];
+    protected $routes=[];
     protected Request $request;
     protected Response $response;
 
@@ -15,24 +15,24 @@ class Route
         $this->response=$response;
     }
 
-    public static function get($path, array $callback)
+    public  function get($path, array $callback)
     {
-        self::$routes['get'][$path] = $callback;
+        $this->routes['get'][$path] = $callback;
     }
 
-    public static function post($path, array $callback)
+    public  function post($path, array $callback)
     {
-        self::$routes['post'][$path] = $callback;
+        $this->routes['post'][$path] = $callback;
     }
 
-    public static function put($path, array $callback)
+    public  function put($path, array $callback)
     {
-        self::$routes['put'][$path] = $callback;
+        $this->routes['put'][$path] = $callback;
     }
 
-    public static function delete($path, array $callback)
+    public  function delete($path, array $callback)
     {
-        self::$routes['delete'][$path] = $callback;
+        $this->routes['delete'][$path] = $callback;
     }
 
     public function resolve()
