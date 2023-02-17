@@ -4,7 +4,7 @@ require __DIR__."/vendor/autoload.php";
 use Classes\controller\MainController;
 use Classes\main\Application;
 use Classes\Main\Request;
-$app = new Application(dirname(__DIR__));
+$app = new Application(__DIR__);
 
 $app->get("/", [MainController::class, "home"]);
 $app->post("/", [MainController::class, "toggleTodo"]);

@@ -8,11 +8,13 @@ class Route
     protected $routes=[];
     protected Request $request;
     protected Response $response;
+    protected View $view;
 
     public function __construct(Request $request,Response $response)
     {
         $this->request=$request;
         $this->response=$response;
+        $this->view = new View;
     }
 
     public  function get($path, array $callback)
@@ -47,10 +49,11 @@ class Route
             return (new View)->renderView("_404");
         }
 
-        // View
-
-
-        // function or method
+        if (is_array($callback)) {
+            $obj = new $callback[0];
+            $func = $callback[1];
+            return $obj->$func($this->request);
+        }
 
     }
 
